@@ -1,0 +1,8 @@
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\bin\Debug\netcoreapp1.1\WebAPIApplication.deps.json
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\bin\Debug\netcoreapp1.1\WebAPIApplication.runtimeconfig.json
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\bin\Debug\netcoreapp1.1\WebAPIApplication.runtimeconfig.dev.json
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\bin\Debug\netcoreapp1.1\WebAPIApplication.dll
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\bin\Debug\netcoreapp1.1\WebAPIApplication.pdb
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\obj\Debug\netcoreapp1.1\WebAPIApplication.AssemblyInfo.cs
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\obj\Debug\netcoreapp1.1\WebAPIApplication.dll
+C:\Users\thest\Desktop\Web-API\WebAPIApplication\obj\Debug\netcoreapp1.1\WebAPIApplication.pdb
