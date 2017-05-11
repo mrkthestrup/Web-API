@@ -41,13 +41,13 @@ namespace WebAPIApplication.Repositories
 
         public void Save(TodoItem todo)
         {
-            _db.todoitems.Add(todo);
+            _db.Add(todo);
             _db.SaveChanges();
         }
 
         public void Update(TodoItem todo)
         {
-            _db.todoitems.Update(todo);
+            _db.Update(todo);
             _db.SaveChanges();
         }
     }

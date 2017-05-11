@@ -45,11 +45,25 @@ namespace WebAPIApplication.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id,[FromBody]TodoItem todo)
+        public IActionResult Put(int id,[FromBody]TodoItem item)
         {
+           if (item == null || item.TodoItemID != id) 
+           {
+               return BadRequest();
+           }
+            var todo = _todoRepository.Get(id);
+            if(todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.IsComplete = item.IsComplete;
+            todo.Task = item.Task;
+
             _todoRepository.Update(todo);
-            return new OkObjectResult(todo);
+            return new NoContentResult();
         }
+
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
