@@ -4,27 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebAPIApplication.Entities;
+using WebAPIApplication.Repositories;
 
 namespace WebAPIApplication.Controllers
 {
     [Route("api/[controller]")]
     public class TodosController : Controller
     {
-        List<TodoItem> _todoList = new List<TodoItem>();
+        private ITodoRepository _todoRepository;
+
+        public TodosController(ITodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
+        }
 
         // GET api/values
         [HttpGet]
         public IActionResult Get()
         {
-            _todoList.Add(new TodoItem{TodoItemID = 1, Task = "First task", IsComplete = false});
-            return new OkObjectResult(_todoList);
+           var todo = _todoRepository.GetAll();
+            return new OkObjectResult(todo);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            //return NoTfound(); - 404 message!
+            return new OkObjectResult (_todoRepository.Get(id));
         }
 
         // POST api/values
