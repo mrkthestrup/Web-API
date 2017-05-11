@@ -2,48 +2,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebAPIApplication.Entities;
+using WebAPIApplication.Model;
 
 namespace WebAPIApplication.Repositories
 {
     public class InMenTodoRepository : ITodoRepository
-    {
-        List<TodoItem> todoList;
+    {     
+      
+       private MyDbContext _db;
+        private DbSet<TodoItem> _TodoItem;
+      //  List<TodoItem> todoList;
 
         //tom konstruktør!
-        public InMenTodoRepository()
+        public InMenTodoRepository(MyDbContext db)
         {
-            todoList = new List<TodoItem>();
-            todoList.Add(new TodoItem{TodoItemID = 1, Task = "First task", IsComplete = false});
-            todoList.Add(new TodoItem{TodoItemID = 2, Task = "2 task", IsComplete = false});
-            todoList.Add(new TodoItem{TodoItemID = 3, Task = "3 task", IsComplete = true});
-            todoList.Add(new TodoItem{TodoItemID = 4, Task = "4 task", IsComplete = true});
-
+            _db = db;
+            _TodoItem = db.todoitems;   
         }
 
-        public void Delete(TodoItem id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var itemx = _TodoItem.Find(id);
+           _db.todoitems.Remove(itemx);
+           _db.SaveChanges();
         }
 
         public TodoItem Get(int id)
         {
-            return todoList.Find(item => item.TodoItemID == id);
+            return _TodoItem.Find(id);
         }
 
         public IEnumerable<TodoItem> GetAll()
         {
-            return todoList;
+            return _TodoItem;
         }
 
-        public void Save(TodoItem TodoItem)
+        public void Save(TodoItem todo)
         {
-            throw new NotImplementedException();
+            _db.todoitems.Add(todo);
+            _db.SaveChanges();
         }
 
-        public void Update(TodoItem TodoItem)
+        public void Update(TodoItem todo)
         {
-            throw new NotImplementedException();
+            _db.todoitems.Update(todo);
+            _db.SaveChanges();
         }
     }
 }

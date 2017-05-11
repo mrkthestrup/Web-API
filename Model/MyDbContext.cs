@@ -9,10 +9,10 @@ namespace WebAPIApplication.Model
     {
 
          public DbSet<TodoItem> todoitems { get; set; }
-          protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
+         
+           protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             optionBuilder.UseSqlite("Filename=./mydb.db");
         } 
-
     }
 }

@@ -22,8 +22,8 @@ namespace WebAPIApplication.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-           var todo = _todoRepository.GetAll();
-            return new OkObjectResult(todo);
+           IEnumerable<TodoItem> todoItems = _todoRepository.GetAll();
+           return new OkObjectResult(todoItems);
         }
 
         // GET api/values/5
@@ -36,20 +36,28 @@ namespace WebAPIApplication.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]TodoItem todo)
         {
+            _todoRepository.Save(todo);
+                                //location header               Besked
+            return Created("api/todos/" + todo.TodoItemID, "{\"msg\": \"Item Created\"}");
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id,[FromBody]TodoItem todo)
         {
+            _todoRepository.Update(todo);
+            return new OkObjectResult(todo);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _todoRepository.Delete(id);
+            return NoContent();
+
         }
     }
 }

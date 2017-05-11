@@ -14,7 +14,7 @@ namespace WebAPIApplication.Repositories
 
         void Save(TodoItem TodoItem);
 
-        void Delete(TodoItem id);
+        void Delete(int id);
         
         void Update(TodoItem TodoItem);
     }
